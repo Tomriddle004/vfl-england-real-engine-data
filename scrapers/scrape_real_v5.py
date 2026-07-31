@@ -157,9 +157,9 @@ async def capture_auth_sequence():
             itype = await inp.get_attribute("type") or ""
             placeholder = await inp.get_attribute("placeholder") or ""
             if itype == "tel" or "phone" in placeholder.lower():
-                await inp.fill("REDACTED_PHONE")
+                await inp.fill(os.environ["SB_PHONE"])
             elif itype == "password":
-                await inp.fill("REDACTED_PASSWORD")
+                await inp.fill(os.environ["SB_PASSWORD"])
         await asyncio.sleep(1)
         
         for sel in ["button:has-text('Login')", "button:has-text('Log In')", "button[type='submit']"]:
